@@ -3,8 +3,6 @@ import { Image } from 'react-native';
 
 import logo from '~/assets/logo.png';
 
-import Input from '~/components/Input';
-import Button from '~/components/Button';
 import Background from '~/components/Background';
 
 import {
@@ -15,16 +13,8 @@ import {
   SignLink,
   SignLinkText,
 } from './styles';
-/**
- * <Text>SIGN IN MOTEHERFUCKER</Text>
-        <Input
-          style={{ marginTop: 30 }}
-          icon="call"
-          placeholder="Digite seu nome"
-        />
-        <Button>Entrar</Button>
- */
-export default function SignIn() {
+
+export default function SignIn({ navigation }) {
   return (
     <Background>
       <Container>
@@ -48,7 +38,7 @@ export default function SignIn() {
           <SubmitButton onPress={() => {}}>Acessar</SubmitButton>
         </Form>
 
-        <SignLink onPress={() => {}}>
+        <SignLink onPress={() => navigation.navigate('SignUp')}>
           <SignLinkText>Criar conta gratuita</SignLinkText>
         </SignLink>
       </Container>

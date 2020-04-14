@@ -17,7 +17,7 @@ export default function Routes() {
       <Stack.Screen
         name="SignUp"
         component={SignUp}
-        options={{ title: 'Register' }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
