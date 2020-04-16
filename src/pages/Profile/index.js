@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Background from '~/components/Background';
+import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
 import {
@@ -11,9 +12,10 @@ import {
   FormInput,
   Separator,
   SubmitButton,
+  LogoutButton,
 } from './styles';
 
-export default function Profile({ navigation }) {
+export default function Profile() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
   const profile = useSelector((state) => state.user.profile);
@@ -29,12 +31,26 @@ export default function Profile({ navigation }) {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
+  useEffect(() => {
+    setOldPassword('');
+    setPassword('');
+    setConfirmPassword('');
+  }, [profile]);
+
   function handleSubmit() {
-    /**
-     *
-     * AQUI NÃO FUNCIONA!
-     */
-    console.tron.log('HANDLE SUBMIT FUNFOU');
+    dispatch(
+      updateProfileRequest({
+        name,
+        email,
+        oldPassword,
+        password,
+        confirmPassword,
+      })
+    );
+  }
+
+  function handleLogout() {
+    dispatch(signOut());
   }
 
   return (
@@ -102,8 +118,11 @@ export default function Profile({ navigation }) {
           />
 
           <SubmitButton loading={loading} onPress={handleSubmit}>
-            Atualizar
+            Atualizar Cadastro
           </SubmitButton>
+          <LogoutButton loading={loading} onPress={handleLogout}>
+            Sair do GoBarber
+          </LogoutButton>
         </Form>
       </Container>
     </Background>
