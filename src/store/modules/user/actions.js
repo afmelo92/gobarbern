@@ -1,4 +1,6 @@
 export function updateProfileRequest(data) {
+  console.tron.log('CHAMOU O ACTION');
+
   return {
     type: '@user/UPDATE_PROFILE_REQUEST',
     payload: { data },
