@@ -47,9 +47,15 @@ function NewStackScreen() {
         }}
       />
       <NewStack.Screen
-        name="Horario"
+        name="Selecione o Horario"
         component={SelectDateTime}
-        options={{ headerShown: false }}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <Icon name="chevron-left" size={30} color="#FFF" />
+            </TouchableOpacity>
+          ),
+        }}
       />
       <NewStack.Screen
         name="Confirma"
