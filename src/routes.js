@@ -58,9 +58,15 @@ function NewStackScreen() {
         }}
       />
       <NewStack.Screen
-        name="Confirma"
+        name="Confirmar o Agendamento"
         component={Confirm}
-        options={{ headerShown: false }}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <Icon name="chevron-left" size={30} color="#FFF" />
+            </TouchableOpacity>
+          ),
+        }}
       />
     </NewStack.Navigator>
   );
