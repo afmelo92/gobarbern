@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, DateButton, DateText, Picker } from './styles';
 
-export default function DateInput({ date, onChange }) {
+export default function DateInput({ date, onChangeInput }) {
   const [opened, setOpened] = useState(false);
 
   const dateFormatted = useMemo(
@@ -15,13 +15,20 @@ export default function DateInput({ date, onChange }) {
     [date]
   );
 
-  async function handleOpenPicker() {
-    await setOpened(true);
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    console.tron.log(`CURRENT DATE: ${currentDate}`);
+    onChangeInput(currentDate);
+    setOpened(false);
+  };
+
+  function handleDateButton() {
+    setOpened(true);
   }
 
   return (
     <Container>
-      <DateButton onPress={handleOpenPicker}>
+      <DateButton onPress={handleDateButton}>
         <Icon name="event" color="#FFF" size={20} />
         <DateText>{dateFormatted}</DateText>
       </DateButton>
@@ -31,12 +38,12 @@ export default function DateInput({ date, onChange }) {
           <DateTimePicker
             testID="dateTimePicker"
             value={date}
-            onChange={onChange}
             minimumDate={new Date()}
             is24Hour
-            display="default"
+            display="spinner"
             locale="pt"
             mode="date"
+            onChange={onChange}
           />
         </Picker>
       )}
