@@ -25,6 +25,7 @@ function NewStackScreen() {
   return (
     <NewStack.Navigator
       screenOptions={{
+        resetOnBlur: true,
         headerTransparent: true,
         headerTintColor: '#FFF',
         headerTitleAlign: 'center',
@@ -158,62 +159,3 @@ export default function Routes() {
     </>
   );
 }
-
-/**
- * {signedIn ? (
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === 'Agendamentos') {
-                iconName = 'event';
-              } else if (route.name === 'Meu Perfil') {
-                iconName = 'person';
-              } else {
-                iconName = 'add-circle-outline';
-              }
-
-              return <Icon name={iconName} size={20} color={color} />;
-            },
-          })}
-          tabBarOptions={{
-            keyboardHidesTabBar: true,
-            activeTintColor: '#fff',
-            inactiveTintColor: 'rgba(255,255,255, 0.6)',
-            style: {
-              backgroundColor: '#8d41a8',
-            },
-          }}
-        >
-          <Tab.Screen
-            name="Agendamentos"
-            component={Dashboard}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name="Agendar"
-            component={NewStackScreen}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name="Meu Perfil"
-            component={Profile}
-            options={{ headerShown: false }}
-          />
-        </Tab.Navigator>
-      ) : (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="SignIn"
-            component={SignIn}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      )}
- */

@@ -21,7 +21,7 @@ export default function Confirm({ navigation, route }) {
       date: time,
     });
 
-    navigation.navigate('Agendamentos');
+    navigation.popToTop();
   }
 
   return (
